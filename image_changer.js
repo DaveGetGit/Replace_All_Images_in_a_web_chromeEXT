@@ -1,15 +1,15 @@
-console.log("Image Changer extension");
+let imageNames = ["1.png", "2.png", "3.png", "4.png", "5.png"];
 
-let imgNames = ["1.png", "2.png", "3.png", "4.png", "5.png"];
+let imagesOnPage = document.getElementsByTagName("img");
 
-let currentImages = document.getElementsByTagName("img");
+for (let imageElement of imagesOnPage) {
+  let randomIndex = Math.floor(Math.random() * imageNames.length);
 
-for (imgelt of currentImages) {
-  let r = Math.floor(Math.random() * imgNames.length);
+  let filePath = "imgresources/" + imageNames[randomIndex];
 
-  let file = "imgresources/" + imgNames[r];
-  let url = chrome.runtime.getURL(file);
-  imgelt.src = url;
+  let fileURL = chrome.runtime.getURL(filePath);
 
-  console.log(imgelt.src);
+  imageElement.src = fileURL;
+
+  console.log(imageElement.src);
 }
